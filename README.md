@@ -1,3 +1,5 @@
+This is the fork of  Blockchain Image Authentication System
+
 
 # Blockchain Image Authentication System
 
@@ -106,8 +108,7 @@ You can access your website from your browser at http://127.0.0.1:3000
 
 ---
 
-## Author
-#### HEISENBERG Team
+## HEISENBERG Team
 Senthamizhan
 Vijay Ragav R
 Salai saidhanyan

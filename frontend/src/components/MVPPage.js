@@ -9,7 +9,6 @@ const MVPPage = () => {
   const [result, setResult] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [verificationData, setVerificationData] = useState(null);
-  const [morphDetails, setMorphDetails] = useState(null);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -33,7 +32,6 @@ const MVPPage = () => {
       return;
     }
     setStatusMessage("Uploading...");
-    setMorphDetails(null);
 
     const formData = new FormData();
     formData.append("image", file);
@@ -46,15 +44,9 @@ const MVPPage = () => {
 
       setResult(response.data);
 
-      if (response.data.is_morph) {
-        setStatusMessage("Morph Detected!");
-        setMorphDetails({
-          message: "Warning: Morphing detected in the uploaded image.",
-          severity: "high",
-        });
-      } else {
+      if (response.data) {
         setStatusMessage("Upload Success");
-      }
+      } 
     } catch (error) {
       setStatusMessage("Upload Error");
       alert(
@@ -80,14 +72,10 @@ const MVPPage = () => {
         alert(
           `Image Verified!\nInformation of Image: ${response.data.metadata}\nTimestamp: ${new Date(
             response.data.timestamp * 1000
-          ).toLocaleString()}${
-            response.data.is_morph
-              ? "\nWarning: Morphing detected in this image."
-              : ""
-          }`
+          ).toLocaleString()}`
         );
       } else {
-        alert("Image not found or tampered!");
+        alert("Image not found");
       }
     } catch (error) {
       alert("Verification failed");
@@ -98,17 +86,8 @@ const MVPPage = () => {
   return (
     <main className="mvp-main">
       <div className="mvp-card">
-        <h2>Blockchain Image Auth with Morph Detection</h2>
+        <h2>Blockchain Based Image Authorization</h2>
 
-        {morphDetails && (
-          <div
-            className={`morph-alert ${
-              morphDetails.severity === "high" ? "alert-high" : "alert-low"
-            }`}
-          >
-            {morphDetails.message}
-          </div>
-        )}
 
         <div className="form-group">
           <label>
@@ -153,8 +132,6 @@ const MVPPage = () => {
             className={`status-message ${
               statusMessage.toLowerCase().includes("error")
                 ? "error"
-                : statusMessage.toLowerCase().includes("morph")
-                ? "morph"
                 : "success"
             }`}
           >
@@ -169,17 +146,11 @@ const MVPPage = () => {
               <strong>Image Hash:</strong> {result.hash}
             </p>
             <p>
-              <strong>Status:</strong>{" "}
-              {result.is_morph ? "Morph Detected" : "Uploaded"}
+              <strong>Status: Uploaded</strong>
             </p>
             <p>
               <strong>Transaction Hash:</strong> {result.tx_hash}
             </p>
-            {result.is_morph && (
-              <p className="morph-warning">
-                Warning: Morphing detected in this image.
-              </p>
-            )}
           </div>
         )}
 
@@ -197,11 +168,6 @@ const MVPPage = () => {
               <strong>Timestamp:</strong>{" "}
               {new Date(verificationData.timestamp * 1000).toLocaleString()}
             </p>
-            {verificationData.is_morph && (
-              <p className="morph-warning">
-                Warning: Morphing detected in this image.
-              </p>
-            )}
           </div>
         )}
       </div>
