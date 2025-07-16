@@ -64,7 +64,7 @@ const LandingPage = () => (
     <section id="solution" className="section alt-section">
       <div className="container solution-content">
         <div className="solution-text">
-          <h2>A Blockchain-Based Press Image Verification Platform</h2>
+          <h2>Blockchain Image Authentication System</h2>
           <p>
             Verified Lens leverages blockchain and AI to create a tamper-proof record of press images, their metadata, and authenticity.
           </p>

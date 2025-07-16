@@ -86,7 +86,7 @@ const MVPPage = () => {
   return (
     <main className="mvp-main">
       <div className="mvp-card">
-        <h2>Blockchain Based Image Authorization</h2>
+        <h2>Blockchain Image Authentication System</h2>
 
 
         <div className="form-group">
