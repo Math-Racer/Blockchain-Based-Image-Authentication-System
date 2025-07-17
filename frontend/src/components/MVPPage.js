@@ -9,16 +9,52 @@ const MVPPage = () => {
   const [result, setResult] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [verificationData, setVerificationData] = useState(null);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    setFile(selectedFile);
-    if (selectedFile) {
+    handleFileSelect(selectedFile);
+  };
+
+  const handleFileSelect = (selectedFile) => {
+    if (selectedFile && selectedFile.type.startsWith('image/')) {
+      setFile(selectedFile);
       const reader = new FileReader();
       reader.onloadend = () => setImagePreview(reader.result);
       reader.readAsDataURL(selectedFile);
-    } else {
-      setImagePreview(null);
+    }
+  };
+
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      const droppedFile = files[0];
+      if (droppedFile.type.startsWith('image/')) {
+        handleFileSelect(droppedFile);
+      } else {
+        alert('Please select an image file.');
+      }
     }
   };
 
@@ -86,14 +122,30 @@ const MVPPage = () => {
   return (
     <main className="mvp-main">
       <div className="mvp-card">
-        <h2>Blockchain Image Authentication System</h2>
+        <h2>Blockchain Based Image Authentication System</h2>
 
 
         <div className="form-group">
-          <label>
-            Select Image:
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-          </label>
+          <div 
+            className={`drag-drop-area ${isDragOver ? 'drag-over' : ''}`}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
+            <label className="file-input-label">
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
+              <div className="drag-drop-content">
+                <p>📁 Drag & drop an image here</p>
+                <p>or <span className="click-text">click to browse</span></p>
+              </div>
+            </label>
+          </div>
         </div>
 
         {imagePreview && (

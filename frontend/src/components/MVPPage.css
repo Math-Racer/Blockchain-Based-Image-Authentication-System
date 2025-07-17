@@ -1,7 +1,7 @@
 
 .mvp-main {
   min-height: 100vh;
-  background-image: url("bg2.jpg"); /* webpackIgnore: true */
+  background-image: url("bg.jpg"); /* webpackIgnore: true */
   background-repeat: repeat;
   display: flex;
   align-items: center;
@@ -121,4 +121,47 @@ input[type="text"] {
   color: #b30000;
   font-weight: 600;
   margin-top: 8px;
+}
+
+/* Drag and Drop Styles */
+.drag-drop-area {
+  border: 2px dashed #bfcbe3;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  background: #f9fafb;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.drag-drop-area:hover {
+  border-color: #163f8c;
+  background: #f0f4ff;
+}
+
+.drag-drop-area.drag-over {
+  border-color: #163f8c;
+  background: #e3eaff;
+  border-style: solid;
+}
+
+.file-input-label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+.drag-drop-content {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.drag-drop-content p {
+  margin: 5px 0;
+}
+
+.click-text {
+  color: #163f8c;
+  font-weight: 600;
+  text-decoration: underline;
 }

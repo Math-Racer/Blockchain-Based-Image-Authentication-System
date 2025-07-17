@@ -16,7 +16,7 @@ if (Test-Path "metadata.db") {
 }
 python -m venv venv
 .\venv\Scripts\activate
-pip install -r requirements.txt
+#pip install -r requirements.txt
 Start-Process -NoNewWindow -FilePath "python" -ArgumentList "backend.py"
 
 cd ..\frontend

@@ -1,7 +1,7 @@
 This is the fork of  Blockchain Image Authentication System
 
 
-# Blockchain Image Authentication System
+# Blockchain Based Image Authentication System
 
 A decentralized image verification platform that uses blockchain to store and validate image authenticity. This project is ideal for press images, political events, or official media to combat misinformation and tampering.
 
@@ -38,8 +38,8 @@ A decentralized image verification platform that uses blockchain to store and va
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/VSENTHAMIZHAN/Blockchain-based-image-authorization.git
-cd Blockchain-based-image-authorization
+git clone https://github.com/Math-Racer/Blockchain-Based-Image-Authentication-System
+cd Blockchain-Based-Image-Authentication-System
 ```
 
 ### 2. Start Local Blockchain
@@ -109,7 +109,7 @@ You can access your website from your browser at http://127.0.0.1:3000
 ---
 
 ## HEISENBERG Team
-Senthamizhan
-Vijay Ragav R
-Salai saidhanyan
-Risha Shri
+- Senthamizhan
+- Vijay Ragav R
+- Salai saidhanyan
+- Risha Shri
